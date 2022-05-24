@@ -56,10 +56,9 @@ class Training:
         distance = self.get_distance()
         speed = self.get_mean_speed()
         calories = self.get_spent_calories()
-        infomessage_object = InfoMessage(training_type,
-                                         duration, distance,
-                                         speed, calories)
-        return infomessage_object
+        return InfoMessage(training_type,
+                           duration, distance,
+                           speed, calories)
 
 
 class Running(Training):
@@ -131,9 +130,7 @@ def read_package(workout_type: str, data: list) -> Training:
     training_class_dict = {'SWM': Swimming,
                            'RUN': Running,
                            'WLK': SportsWalking}
-    class_needed = training_class_dict[workout_type]
-    object_from_the_class = class_needed(*data)
-    return object_from_the_class
+    return training_class_dict[workout_type](*data)
 
 
 def main(training: Training) -> None:
